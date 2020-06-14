@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MoneyCounter
@@ -19,30 +12,30 @@ namespace MoneyCounter
 
         private void btnCount_Click(object sender, EventArgs e)
         {
-            int[] Coinvals = new int[] { 1, 2, 5, 10, 20, 50, 100 };
-            int[] NumofCoinsUsed = new int[7];
+            int[] NoteValues = new int[] { 1, 2, 5, 10, 20, 50, 100 };
+            int[] NumofNotesUsed = new int[7];
             // If txtAmount is not numerical then notify user and exit
             int Amount2Cal = Convert.ToInt32(txtAmount.Text);
-            int RemainingAmount = Amount2Cal;
+            int InputAmount = Amount2Cal;
 
-            for (int currentCoin = 6; 
-                    currentCoin >= 0; currentCoin--) 
+            // For loop
+            for (int currentCoin = 6; currentCoin >= 0; currentCoin--)
             {
-                int currentCoinIndex = RemainingAmount / Coinvals[currentCoin];
-                
-                NumofCoinsUsed[currentCoin] = currentCoinIndex;
-                RemainingAmount -= (currentCoinIndex * Coinvals[currentCoin]);
+                int currentCoinIndex = InputAmount / NoteValues[currentCoin];
+                NumofNotesUsed[currentCoin] = currentCoinIndex; //Money input divided with number of notes
+                InputAmount -= (currentCoinIndex * NoteValues[currentCoin]);//Multiplying divided answer with number of notes
 
-                if (RemainingAmount == 0) break;
+                if (InputAmount == 0) break;
+
             }
-
-            res100.Text = NumofCoinsUsed[6].ToString();
-            res50.Text = NumofCoinsUsed[5].ToString();
-            res20.Text = NumofCoinsUsed[4].ToString();
-            res10.Text = NumofCoinsUsed[3].ToString();
-            res5.Text = NumofCoinsUsed[2].ToString();
-            res2.Text = NumofCoinsUsed[1].ToString();
-            res1.Text = NumofCoinsUsed[0].ToString();
+            //Number of notes output 
+            res100.Text = NumofNotesUsed[6].ToString();
+            res50.Text = NumofNotesUsed[5].ToString();
+            res20.Text = NumofNotesUsed[4].ToString();
+            res10.Text = NumofNotesUsed[3].ToString();
+            res5.Text = NumofNotesUsed[2].ToString();
+            res2.Text = NumofNotesUsed[1].ToString();
+            res1.Text = NumofNotesUsed[0].ToString();
 
 
         }
